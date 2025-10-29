@@ -4,27 +4,18 @@ backend/node_modules/
 
 # Production
 build/
-dist/
 
-# Backend data
+# Backend data (optional - include if you want to keep data between deployments)
 backend/data/
 backend/uploads/
 
-# Environment variables
+# Environment
 .env
 backend/.env
 .env.local
 
 # Logs
 *.log
-npm-debug.log*
 
-# OS files
+# OS
 .DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-.vercel

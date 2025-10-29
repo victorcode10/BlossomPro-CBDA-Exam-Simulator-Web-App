@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { Mail, Lock, User, Eye, EyeOff, LogIn, UserPlus, Shield } from 'lucide-react';
 import emailService from '../utils/emailService';
+import { API_ENDPOINTS } from '../config/api';
+
+// Then change fetch calls:
+const response = await fetch(API_ENDPOINTS.login, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password })
+});
 
 const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -348,14 +356,14 @@ const Login = ({ onLogin }) => {
             </button>
           </div>
 
-          {/* Demo Credentials */}
+          {/* Demo Credentials
           <div className="mt-6 bg-blue-50 rounded-lg p-4">
             <p className="text-xs font-semibold text-blue-800 mb-2">Demo Credentials:</p>
             <div className="space-y-1 text-xs text-blue-700">
               <p><strong>Student:</strong> student@cbda.com / student123</p>
               <p><strong>Admin:</strong> admin@cbda.com / admin123</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
