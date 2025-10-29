@@ -1,0 +1,159 @@
+
+
+
+
+
+### **Step 2: Update package.json Scripts**
+
+Add to root `package.json`:
+```json
+{
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "vercel-build": "npm run build"
+  }
+}
+```
+
+### **Step 3: Deploy to Vercel**
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy
+vercel
+
+# Or deploy to production
+vercel --prod
+```
+
+### **Step 4: Alternative - Deploy via Vercel Dashboard**
+
+1. Go to https://vercel.com
+2. Sign up/Login (FREE)
+3. Click "New Project"
+4. Import your GitHub repository
+5. Configure:
+   - **Framework Preset**: Create React App
+   - **Root Directory**: ./
+   - **Build Command**: npm run build
+   - **Output Directory**: build
+6. Click "Deploy"
+
+### **Step 5: Environment Variables in Vercel**
+
+In Vercel Dashboard → Settings → Environment Variables, add:
+```
+EMAILJS_SERVICE_ID=your_service_id
+EMAILJS_TEMPLATE_ID=your_template_id
+EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+---
+
+## 📧 **EmailJS Setup (Required for Email Verification)**
+
+### **Step 1: Create EmailJS Account**
+
+1. Go to https://www.emailjs.com/
+2. Sign up (FREE - 200 emails/month)
+3. Add Email Service (Gmail recommended)
+
+### **Step 2: Create Email Template**
+```
+Subject: Verify Your CBDA Exam Account
+
+Hi {{to_name}},
+
+Welcome to CBDA Exam Simulator!
+
+Your verification code is: {{verification_code}}
+
+Please enter this code to complete your registration.
+
+This code expires in 15 minutes.
+
+Best regards,
+CBDA Exam Team
+```
+
+### **Step 3: Get Your Credentials**
+
+1. Go to Dashboard
+2. Copy:
+   - Service ID
+   - Template ID
+   - Public Key
+
+### **Step 4: Update src/config/emailConfig.js**
+```javascript
+export const EMAILJS_CONFIG = {
+  serviceId: 'service_xxxxxx', // Your Service ID
+  templateId: 'template_xxxxxx', // Your Template ID
+  publicKey: 'xxxxxxxxxxxxxx' // Your Public Key
+};
+```
+
+---
+
+## ✅ **COMPLETE SETUP CHECKLIST**
+
+### **Local Development:**
+```bash
+# 1. Install dependencies
+npm install
+cd backend && npm install && cd ..
+
+# 2. Setup EmailJS
+# - Create account
+# - Add credentials to src/config/emailConfig.js
+
+# 3. Add logo
+# - Place logo.png in public/
+
+# 4. Run application
+# Terminal 1: npm start
+# Terminal 2: cd backend && npm start
+```
+
+### **Deployment:**
+```bash
+# 1. Push to GitHub
+git init
+git add .
+git commit -m "Initial commit"
+git push origin main
+
+# 2. Deploy to Vercel
+vercel --prod
+
+# 3. Add environment variables in Vercel dashboard
+
+# 4. Done! Your app is live!
+```
+
+---
+
+## 🎯 **WHAT YOU NOW HAVE:**
+
+✅ Email verification for students
+✅ Email verification for admin
+✅ Change email functionality
+✅ Separate chapter and mock exam sections
+✅ Word document upload (.docx)
+✅ JSON upload
+✅ CSV stored in Firebase Storage (cloud)
+✅ No logo upload section
+✅ Beautiful, colorful interface
+✅ Fully responsive design
+✅ FREE deployment on Vercel
+✅ FREE email service (EmailJS)
+✅ FREE cloud storage (Firebase - 5GB)
+
+**Everything is FREE and production-ready!** 🚀
+
+Should I provide the EmailJS template setup or Firebase Storage setup guide?

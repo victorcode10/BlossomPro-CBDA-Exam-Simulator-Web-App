@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "env": {
+    "DISABLE_ESLINT_PLUGIN": "true"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
