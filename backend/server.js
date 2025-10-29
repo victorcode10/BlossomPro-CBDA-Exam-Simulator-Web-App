@@ -36,7 +36,8 @@ const initializeAdmin = () => {
         email: 'victor@blossom.africa',
         password: bcrypt.hashSync('admin123', 10),
         role: 'admin',
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        verified: true
       },
       {
         id: 'student_001',
@@ -44,7 +45,8 @@ const initializeAdmin = () => {
         email: 'victorboladea@gmail.com',
         password: bcrypt.hashSync('student123', 10),
         role: 'student',
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        verified: true
       }
     ];
     fs.writeFileSync(usersPath, JSON.stringify(defaultUsers, null, 2));
@@ -133,7 +135,8 @@ app.post('/api/auth/register', (req, res) => {
       email,
       password: bcrypt.hashSync(password, 10),
       role: 'student',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      verified: false
     };
 
     users.push(newUser);

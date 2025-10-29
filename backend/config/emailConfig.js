@@ -1,9 +1,10 @@
 // EmailJS Configuration
 export const EMAILJS_CONFIG = {
-  serviceId: 'blossompro_2025', // From EmailJS dashboard
-  templateId: 'template_rkew25t', // From EmailJS dashboard
-  publicKey: 'Bp7a6FffZ4DfBOqY3' // From EmailJS dashboard
+  serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+  templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+  publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
 };
+
 
 // Email templates
 export const EMAIL_TEMPLATES = {
