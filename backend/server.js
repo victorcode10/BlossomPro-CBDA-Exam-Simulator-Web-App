@@ -8,6 +8,31 @@ require('dotenv').config();
 
 const app = express();
 
+// IMPORTANT: Set port from environment or default
+const PORT = process.env.PORT || 5000;
+
+
+// CORS configuration for production
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://your-app-name.onrender.com', // Will update this after deployment
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(null, true); // For now, allow all origins
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
+
 // Middleware
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -629,7 +654,7 @@ app.use((req, res) => {
   res.status(404).json({ success: false, error: 'Route not found' });
 });
 
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`\n🚀 ========================================`);
   console.log(`   CBDA Exam Simulator Backend`);

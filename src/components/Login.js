@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Lock, User, Eye, EyeOff, LogIn, UserPlus, Shield } from 'lucide-react';
 import emailService from '../utils/emailService';
-import { API_ENDPOINTS } from '../config/api';
-
-// Then change fetch calls:
-const response = await fetch(API_ENDPOINTS.login, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email, password })
-});
 
 const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -40,12 +32,10 @@ const Login = ({ onLogin }) => {
 
         if (data.success) {
           if (!data.user.verified) {
-            // If the user is not verified, prompt them to verify
             setError('Please verify your email first. Check your inbox for verification code.');
             setVerificationStep(true);
             setPendingUser(data.user);
           } else {
-            // If the user is verified, store the status and login
             localStorage.setItem('isVerified', 'true');
             onLogin(data.user);
           }
@@ -88,7 +78,6 @@ const Login = ({ onLogin }) => {
       }
 
       if (isLogin) {
-        // Mark user as verified and login
         onLogin({ ...pendingUser, verified: true });
         localStorage.setItem('isVerified', 'true');
       } else {
@@ -356,14 +345,7 @@ const Login = ({ onLogin }) => {
             </button>
           </div>
 
-          {/* Demo Credentials
-          <div className="mt-6 bg-blue-50 rounded-lg p-4">
-            <p className="text-xs font-semibold text-blue-800 mb-2">Demo Credentials:</p>
-            <div className="space-y-1 text-xs text-blue-700">
-              <p><strong>Student:</strong> student@cbda.com / student123</p>
-              <p><strong>Admin:</strong> admin@cbda.com / admin123</p>
-            </div>
-          </div> */}
+          
         </div>
       </div>
     </div>
